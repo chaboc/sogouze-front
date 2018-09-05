@@ -1,7 +1,6 @@
-/** @format */
 
-import {AppRegistry} from 'react-native';
-import App from './App';
-import {name as appName} from './app.json';
+import { AppRegistry, StatusBar } from 'react-native';
+import App from './src/setup';
 
-AppRegistry.registerComponent(appName, () => App);
+StatusBar.setBarStyle('default');
+AppRegistry.registerComponent('PLI', () => App);
