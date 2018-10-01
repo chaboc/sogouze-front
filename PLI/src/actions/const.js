@@ -1,0 +1,4 @@
+export const ONGOING_MATCH = 'ONGOING_MATCH'
+export const SUCCESS_MATCH = 'SUCCESS_MATCH'
+export const ERROR_MATCH = 'ERROR_MATCH'
+export const REMOVE_MATCH = 'REMOVE_MATCH'

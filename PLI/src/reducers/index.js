@@ -4,10 +4,10 @@ import { reducer as modalReducer } from 'redux-modal';
 import drawer from "./drawer";
 
 
-import loginReducer from "./LoginReducer";
+import matchReducer from "./MatchReducer";
 
 
 
 export default combineReducers({
-  login: loginReducer,
+  match: matchReducer,
 });

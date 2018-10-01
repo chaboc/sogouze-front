@@ -18,10 +18,10 @@ class ProfileComponent extends Component {
                     <Text style={{fontSize: 15}}>{params.percent}</Text>
                     <Text style={{marginVertical: 15}}>{params.description}</Text>
                     <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 25}}>
-                        <Button large transparent>
+                        <Button large transparent onPress={() => this.props.action('like')}>
                              <Icon type="MaterialCommunityIcons" name='heart' style={{color: '#4bc301', fontSize: 50}} />
                         </Button>
-                        <Button large transparent>
+                        <Button large transparent onPress={() => this.props.action('dislike')}>
                             <Icon type="MaterialCommunityIcons" name='close' style={{color: '#ed111d', fontSize: 50}} />
                         </Button>
                     </View>

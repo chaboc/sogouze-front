@@ -13,10 +13,12 @@ class ListProfileComponent extends Component {
     };
 
     render(){
+        console.log(this.props.items);
         const { navigate } = this.props.navigation;
         return(
             <Container style={{backgroundColor: 'white'}}>
                 <Content>
+                    <Text>fadfsfasdsdfsdfa</Text>
                     <List dataArray={this.props.items} renderRow={(item) =>
                         <ListItem avatar>
                           <Left>
