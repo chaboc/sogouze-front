@@ -49,7 +49,8 @@ export function getMatchList(data) {
 export function actionMatch(data) {
   return (dispatch) => {
       axios.post(GLOBAL.BASE_URL + '/match/action', {
-          action: data.action
+          action: data.action,
+          match_id: data.match_id,
         })
         .then(function (response) {
           console.log('JE SUIS LA RESPONSE', response);

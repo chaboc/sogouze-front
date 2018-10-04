@@ -27,8 +27,9 @@ export default function (state:State = defaultState, action:Action): State {
         case "REMOVE_MATCH":
             console.log(state);
             const prunedList = state.matchList.filter(item => {
-                return item.id === action.idToRemove;
+                return item.id !== action.idToRemove;
             });
+            console.log(prunedList);
             return {...state, matchList: prunedList};
             break;
         default:

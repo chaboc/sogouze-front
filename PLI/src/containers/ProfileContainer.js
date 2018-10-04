@@ -16,6 +16,7 @@ class ProfileContainer extends Component{
 
     profileAction = (action) => {
         this.props.actionMatch(action);
+        this.props.navigation.navigate('ListProfile');
     }
 
     render(){

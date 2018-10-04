@@ -195,7 +195,7 @@ export default (variables = variable) => {
           color: variables.btnPrimaryBg,
         },
       },
-      backgroundColor: variables.btnPrimaryBg,
+      backgroundColor: '#49B7BC',
     },
 
     '.success': {
@@ -461,7 +461,7 @@ export default (variables = variable) => {
 
     paddingVertical: variables.buttonPadding,
     // paddingHorizontal: variables.buttonPadding + 10,
-    backgroundColor: variables.btnPrimaryBg,
+    backgroundColor: '#49B7BC',
     borderRadius: variables.borderRadiusBase,
     borderColor: variables.btnPrimaryBg,
     borderWidth: null,
