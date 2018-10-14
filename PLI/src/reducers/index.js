@@ -5,9 +5,11 @@ import drawer from "./drawer";
 
 
 import matchReducer from "./MatchReducer";
+import conversationReducer from "./ConversationReducer";
 
 
 
 export default combineReducers({
   match: matchReducer,
+  conversation: conversationReducer,
 });

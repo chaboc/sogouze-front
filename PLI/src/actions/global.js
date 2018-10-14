@@ -1,3 +1,3 @@
 export default {
-  BASE_URL: 'http://172.21.36.1:3000',
+  BASE_URL: 'http://172.21.36.1:8000',
 };

@@ -13,7 +13,6 @@ const defaultState = {
 }
 
 export default function (state:State = defaultState, action:Action): State {
-    console.log(action);
     switch (action.type) {
         case "ONGOING_MATCH":
             return {...state, matchLoading: true, matchSuccess: 0, matchMessage: '', matchList: []};
@@ -25,11 +24,9 @@ export default function (state:State = defaultState, action:Action): State {
             return {...state, matchLoading: false, matchSuccess: 0, matchMessage: action.message, matchList: []};
             break;
         case "REMOVE_MATCH":
-            console.log(state);
             const prunedList = state.matchList.filter(item => {
                 return item.id !== action.idToRemove;
             });
-            console.log(prunedList);
             return {...state, matchList: prunedList};
             break;
         default:

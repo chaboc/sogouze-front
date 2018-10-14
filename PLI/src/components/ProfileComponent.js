@@ -27,9 +27,6 @@ class ProfileComponent extends Component {
                             <Icon type="MaterialCommunityIcons" name='close' style={{ color: '#ed111d', fontSize: 50 }} />
                         </Button>
                     </View>
-                    <Button large transparent onPress={() => this.props.navigation.navigate('ListProfile')}>
-                        <Text>Retour</Text>
-                    </Button>
                 </View>
             </Container>
         )

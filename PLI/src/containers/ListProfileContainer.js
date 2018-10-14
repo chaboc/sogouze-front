@@ -13,29 +13,40 @@ import ListProfileComponent from '../components/ListProfileComponent'
 import { getMatchList } from '../actions/match'
 import { loginSpotify } from "../actions/user";
 import SpotifyAuth from 'react-native-spotify-auth';
+import SocketIOClient from 'socket.io-client';
 
 
 class ListProfileContainer extends Component {
 
     constructor(props) {
         super(props);
-        console.log('JE SUIS UNE PROPS', this.props);
         // this.props.login();
-        // if (this.props.list === undefined || this.props.list.length === 0) {
-        //     this.props.getMatchList({ user_id: 1 })
-        // }
-        let auth = new SpotifyAuth('0533bf706a274530824d90b6649e34e4', 'http://localhost:3000/spotify/get_infos');
+        if (this.props.list === undefined || this.props.list.length === 0) {
+            this.props.getMatchList({ user_id: 1 })
+        }
+        let auth = new SpotifyAuth('0533bf706a274530824d90b6649e34e4', 'http://172.21.36.1:8000/spotify/get_infos');
         // console.log('AUTH => ',auth);
-        // auth.startLogin();
-        auth.startLogin()
-            .then(
-                function (data) {
-                    console.log(data.token);
-                },
-                function (error) {
-                    console.warn(error);
-                }
-            );
+        auth.startLogin();
+        this.socket = SocketIOClient('172.21.36.1:8000'); // replace 'environment.serverUrl' with your server url
+        this.socket.connect();
+        this.socket.on('connect', () => {
+            console.log('Wahey -> connected!');
+            this.socket.emit('chan', {data: 'je ssuis une data'}); // emits 'hi server' to your server
+        });
+
+        // // Listens to channel2 and display the data recieved
+        // this.socket.on('channel2', (data) => {
+        //     console.log('Data recieved from server', data); //this will console 'channel 2'
+        // });
+        // auth.startLogin()
+        //     .then(
+        //         function (data) {
+        //             console.log(data.token);
+        //         },
+        //         function (error) {
+        //             console.warn(error);
+        //         }
+        //     );
     }
 
 
@@ -48,7 +59,6 @@ class ListProfileContainer extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <Container>
                 <ListProfileComponent navigation={this.props.navigation} items={this.props.list !== undefined ? this.props.list : []} />
@@ -60,7 +70,7 @@ class ListProfileContainer extends Component {
                         <Button active>
                             <Icon name="list" type="Feather" />
                         </Button>
-                        <Button>
+                        <Button onPress={() => this.props.navigation.navigate('ListConversation')}>
                             <Icon name="message-square" type="Feather" />
                         </Button>
                     </FooterTab>
@@ -71,7 +81,6 @@ class ListProfileContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state);
     return {
         loading: state.match.matchLoading,
         success: state.match.matchSuccess,
