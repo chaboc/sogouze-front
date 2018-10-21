@@ -20,13 +20,10 @@ class ListProfileContainer extends Component {
 
     constructor(props) {
         super(props);
-        // this.props.login();
         if (this.props.list === undefined || this.props.list.length === 0) {
             this.props.getMatchList({ user_id: 1 })
         }
-        let auth = new SpotifyAuth('0533bf706a274530824d90b6649e34e4', 'http://172.21.36.1:8000/spotify/get_infos');
-        // console.log('AUTH => ',auth);
-        auth.startLogin();
+        
         this.socket = SocketIOClient('172.21.36.1:8000'); // replace 'environment.serverUrl' with your server url
         this.socket.connect();
         this.socket.on('connect', () => {
@@ -38,15 +35,6 @@ class ListProfileContainer extends Component {
         // this.socket.on('channel2', (data) => {
         //     console.log('Data recieved from server', data); //this will console 'channel 2'
         // });
-        // auth.startLogin()
-        //     .then(
-        //         function (data) {
-        //             console.log(data.token);
-        //         },
-        //         function (error) {
-        //             console.warn(error);
-        //         }
-        //     );
     }
 
 

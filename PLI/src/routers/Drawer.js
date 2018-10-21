@@ -2,9 +2,10 @@ import React from "react";
 import { DrawerNavigator } from "react-navigation";
 
 import SideBar from "../components/sidebar";
-import ListProfileContainer from "../containers/ListProfileContainer.js";
-import ListConversationContainer from "../containers/ListConversationContainer.js";
-import ProfileContainer from "../containers/ProfileContainer.js";
+import ListProfileContainer from "../containers/ListProfileContainer";
+import ListConversationContainer from "../containers/ListConversationContainer";
+import ProfileContainer from "../containers/ProfileContainer";
+import LoginContainer from "../containers/LoginContainer";
 
 const transitionConfig = () => {
   return {
@@ -35,9 +36,10 @@ const MainDrawerRouter = DrawerNavigator(
     ListConversation: {screen: ListConversationContainer},
     ListProfile: {screen: ListProfileContainer},
     Profile: {screen: ProfileContainer},
+    Login: {screen: LoginContainer},
   },
   {
-    initialRouteName: "ListProfile",
+    initialRouteName: "Login",
     transitionConfig
   }
 );
