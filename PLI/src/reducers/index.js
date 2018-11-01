@@ -6,10 +6,12 @@ import drawer from "./drawer";
 
 import matchReducer from "./MatchReducer";
 import conversationReducer from "./ConversationReducer";
+import userReducer from "./UserReducer";
 
 
 
 export default combineReducers({
   match: matchReducer,
   conversation: conversationReducer,
+  user: userReducer,
 });

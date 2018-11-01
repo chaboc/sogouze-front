@@ -14,15 +14,25 @@ class ListProfileComponent extends Component {
         title: 'Welcome',
     };
 
+    renderEmptyList() {
+        if (this.props.items !== undefined && this.props.items.length == 0) {
+            return (
+                <Text>Vous avez aucun matchs.</Text>
+            );
+        }
+
+        return;
+    }
+
     render() {
-        console.log(this.props.items);
+        console.log('ITEMS =>', this.props.items);
         const { navigate } = this.props.navigation;
         return (
             <Container style={{ backgroundColor: 'white' }}>
                 <Header searchBar rounded>
                     <Item>
                         <Icon name="ios-search" />
-                        <Input placeholder="Search" />
+                        <Input placeholder="Search" onEndEditing={(value) => console.log('CHANGE', value)} />
                         <Icon name="ios-people" />
                     </Item>
                     <Button transparent>
@@ -30,14 +40,15 @@ class ListProfileComponent extends Component {
                     </Button>
                 </Header>
                 <Content>
+                    {this.renderEmptyList()}
                     <List dataArray={this.props.items} renderRow={(item) =>
                         <ListItem avatar>
                             <Left>
-                                <Thumbnail source={{ uri: item.image_url }} />
+                                <Thumbnail source={{ uri: item.user.img }} />
                             </Left>
                             <Body>
-                                <Text>{item.name}</Text>
-                                <Text note>{item.percent}</Text>
+                                <Text>{item.user.display_name}</Text>
+                                <Text note>{item.pourcentage}%</Text>
                             </Body>
                             <Right>
                                 <Button small onPress={() => navigate('Profile', { ...item })} style={styles.profileButton}>

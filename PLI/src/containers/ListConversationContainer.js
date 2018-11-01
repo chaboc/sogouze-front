@@ -28,6 +28,9 @@ class ListConversationContainer extends Component {
         if (this.props.loading === true) {
             loaderJSX = <View style={styles.loaderView}><Spinner /></View>;
         }
+
+        console.log(this.props.loading);
+
         return loaderJSX
     }
 
@@ -35,10 +38,11 @@ class ListConversationContainer extends Component {
         console.log(this.props);
         return (
             <Container>
+                {this.renderLoader()}
                 <ListConversationComponent navigation={this.props.navigation} items={this.props.list !== undefined ? this.props.list : []} />
                 <Footer>
                     <FooterTab>
-                        <Button>
+                        <Button onPress={() => this.props.navigation.navigate('Login')}>
                             <Icon name="user" type="Feather" />
                         </Button>
                         <Button onPress={() => this.props.navigation.navigate('ListProfile')}>

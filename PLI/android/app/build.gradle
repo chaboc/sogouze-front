@@ -143,6 +143,7 @@ dependencies {
     compile project(':react-native-spotify-auth')
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     compile "com.facebook.react:react-native:+"  // From node_modules
+    compile project(':react-native-linear-gradient')
     
 }
 

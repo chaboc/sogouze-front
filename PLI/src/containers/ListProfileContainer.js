@@ -20,21 +20,22 @@ class ListProfileContainer extends Component {
 
     constructor(props) {
         super(props);
-        if (this.props.list === undefined || this.props.list.length === 0) {
-            this.props.getMatchList({ user_id: 1 })
-        }
-        
-        this.socket = SocketIOClient('172.21.36.1:8000'); // replace 'environment.serverUrl' with your server url
+        this.props.getMatchList({ user_id: 1 });
+
+        this.socket = SocketIOClient('172.16.248.3:3000'); // replace 'environment.serverUrl' with your server url
         this.socket.connect();
         this.socket.on('connect', () => {
             console.log('Wahey -> connected!');
-            this.socket.emit('chan', {data: 'je ssuis une data'}); // emits 'hi server' to your server
+            this.socket.emit('notifications', { data: {user_id: 1} }); // emits 'hi server' to your server
+            // Listens to channel2 and display the data recieved
+            this.socket.on('notifications', (data) => {
+                console.log(data);
+                // if (data.user && data.user.id == 1) {
+                //     //On show le toast
+                // }
+                console.log('Data recieved from server', data); //this will console 'channel 2'
+            });
         });
-
-        // // Listens to channel2 and display the data recieved
-        // this.socket.on('channel2', (data) => {
-        //     console.log('Data recieved from server', data); //this will console 'channel 2'
-        // });
     }
 
 
@@ -46,13 +47,16 @@ class ListProfileContainer extends Component {
         return loaderJSX
     }
 
+    
+
     render() {
         return (
             <Container>
-                <ListProfileComponent navigation={this.props.navigation} items={this.props.list !== undefined ? this.props.list : []} />
+                {this.renderLoader()}
+                <ListProfileComponent navigation={this.props.navigation} items={this.props.list !== undefined ? this.props.list : []} />        
                 <Footer>
                     <FooterTab>
-                        <Button>
+                        <Button onPress={() => this.props.navigation.navigate('Login')}>
                             <Icon name="user" type="Feather" />
                         </Button>
                         <Button active>

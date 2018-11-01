@@ -38,6 +38,9 @@ class ListConversationComponent extends Component {
                             <Body>
                                 <Text>{item.name}</Text>
                                 <Text note numberOfLines={2}>{item.last_message}</Text>
+                                <Badge>
+                                    <Text>New</Text>
+                                </Badge>
                             </Body>
                         </ListItem>
                     }>
